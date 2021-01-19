@@ -51,7 +51,7 @@ def build_rename(i3, app_icons, args):
             if name is None:
                 continue
             for name_re in app_icons.keys():
-                if re.match(name_re, name, re.IGNORECASE) \
+                if (re.match(name_re, name, re.IGNORECASE) or re.compile(name_re+"$", re.IGNORECASE).search(name))  \
                    and app_icons[name_re] in icons:
                     return icons[app_icons[name_re]]
         if name:
